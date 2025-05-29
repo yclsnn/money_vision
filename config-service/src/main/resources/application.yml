@@ -8,11 +8,22 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/yclsnn/money-vision-config
-          default-label: main
+          uri: file:///${user.home}/config-repo
+          default-label: master
           clone-on-start: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
 
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/ 
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true 
